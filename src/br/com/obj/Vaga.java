@@ -4,16 +4,79 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Vaga {
-	Boolean isOcupped= false;
-	Integer posicao;
-	LocalDateTime entrada;
-	LocalDateTime saida;
-	Pessoa pessoa;
-	public Vaga() {
-		// TODO Auto-generated constructor stub
+	private Boolean isOcupped;
+	private Integer posicao;
+	private LocalDateTime entrada;
+	private LocalDateTime saida;
+	private Carro carro;
+
+	public Vaga(Integer posicao, Carro carro) {
+		this.isOcupped = true;
+		this.posicao = posicao;
+		this.carro = carro;
+		this.entrada = LocalDateTime.now();
+		this.saida = null;
+
 	}
-	public Vaga(Integer posicao, Pessoa pessoa) {
-		
+
+	public Vaga() {
+		this.isOcupped = false;
+		this.posicao = null;
+		this.carro = null;
+		this.entrada = null;
+		this.saida = null;
+	}
+
+	public Boolean getIsOcupped() {
+		return isOcupped;
+	}
+
+	public void setTrueIsOcupped() {
+		this.isOcupped = true;
+	}
+
+	public void setFalseIsOcupped() {
+		this.isOcupped = false;
+	}
+
+	public Integer getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(Integer posicao) {
+		this.posicao = posicao;
+	}
+
+	public LocalDateTime getEntrada() {
+		return entrada;
+	}
+
+	public void setEntrada(LocalDateTime entrada) {
+		this.entrada = LocalDateTime.now();
+	}
+
+	public LocalDateTime getSaida() {
+		return saida;
+	}
+
+	public void setSaida(LocalDateTime saida) {
+		this.saida = LocalDateTime.now();
+	}
+
+	public Carro getPessoa() {
+		return carro;
+	}
+
+	public void setPessoa(Carro carro) {
+		this.carro = carro;
+	}
+
+	public String minhaVaga() {
+		if (this.isOcupped == true) {
+			return "Vaga Ocupada"+ " | Posicao: " + this.posicao + " | Data e Hora da entrada: " + this.entrada+" | "
+					 + this.carro.informacaoVeiculo();
+		}else {return "Vaga Livre " + this.isOcupped + " | Posicao: " + this.posicao + " | Data e Hora da entrada: " + this.entrada
+				+" | "+  this.carro.informacaoVeiculo();}
 	}
 
 }
