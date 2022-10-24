@@ -11,7 +11,7 @@ public class Carro {
 	String cor;
 	String placa;
 	String modelo;
-	List<Pessoa> pessoa;
+	Pessoa pessoa;
 
 	public String getCor() {
 		return cor;
@@ -42,7 +42,14 @@ public class Carro {
 	}
 
 	public void addPessoa(Pessoa pessoa) {
-		this.pessoa.add(pessoa);
+		this.pessoa = pessoa;
 	}
-
+	
+	public String informacaoVeiculo() {
+		return "Veiculo: "
+				+ "modelo: "+this.modelo+" Cor: "+this.cor+" placa "+this.placa+" Dono "+this.pessoa.toString();
+	}
+	public String informacaoPessoa() {
+		return this.pessoa.toString();
+	}
 }
