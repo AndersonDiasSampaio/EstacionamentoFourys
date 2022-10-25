@@ -18,7 +18,7 @@ public class Main {
 		System.out.println(vaga.minhaVaga());
 		System.out.println(vaga.getEntrada());
 		System.out.println(vaga.getSaida());
-		vaga.getPessoa().getCor();
+		vaga.getCarro().getCor();
 		Vaga[] teste = new Vaga[50];
 		teste[1] = vaga;
 		System.out.println(teste[1].minhaVaga());
@@ -26,8 +26,7 @@ public class Main {
 		System.out.println(estacionamento.vagasDisponivel());
 		estacionamento.estaciona(vaga.getPosicao(), vaga);
 		System.out.println(estacionamento.vagasDisponivel());
-		estacionamento.vagasOcupadas();
-
+		System.out.println(estacionamento.vagasOcupadas());
 	}
 
 }

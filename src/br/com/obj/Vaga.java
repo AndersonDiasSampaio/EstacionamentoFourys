@@ -63,11 +63,11 @@ public class Vaga {
 		this.saida = LocalDateTime.now();
 	}
 
-	public Carro getPessoa() {
+	public Carro getCarro() {
 		return carro;
 	}
 
-	public void setPessoa(Carro carro) {
+	public void setCarro(Carro carro) {
 		this.carro = carro;
 	}
 
@@ -78,5 +78,14 @@ public class Vaga {
 		}else {return "Vaga Livre " + this.isOcupped + " | Posicao: " + this.posicao + " | Data e Hora da entrada: " + this.entrada
 				+" | "+  this.carro.informacaoVeiculo();}
 	}
+	@Override
+	public String toString() {
+		if (this.isOcupped == true) {
+			return "Vaga Ocupada"+ " | Posicao: " + this.posicao + " | Data e Hora da entrada: " + this.entrada+" | "
+					 + this.carro.informacaoVeiculo();
+		}else {return "Vaga Livre " + this.isOcupped + " | Posicao: " + this.posicao + " | Data e Hora da entrada: " + this.entrada
+				+" | "+  this.carro.informacaoVeiculo();}
+	}
+	}
 
-}
+

@@ -25,22 +25,26 @@ public class Estacionamento {
 	}
 
 	public String vagasDisponivel() {
-		ArrayList<Integer> vagasDisponiveis= new ArrayList<Integer>();
-		for(int i=0;i<numeroDeVagas;i++) {	
-			if(vagas[i]==null) {
+		ArrayList<Integer> vagasDisponiveis = new ArrayList<Integer>();
+		for (int i = 0; i < numeroDeVagas; i++) {
+			if (vagas[i] == null) {
 				vagasDisponiveis.add(i);
-				
+
 			}
-		}	
+		}
 		return vagasDisponiveis.toString();
 	}
-	public void vagasOcupadas() {
-		ArrayList<Vaga> vagasOcupadas= new ArrayList<Vaga>();
-		for(int i=0;i<numeroDeVagas;i++) {	
-			if(vagas[i]!=null) {
+
+	public String vagasOcupadas() {
+		ArrayList<Vaga> vagasOcupadas = new ArrayList<Vaga>();
+		for (int i = 0; i < numeroDeVagas; i++) {
+			if (vagas[i] != null) {
 				vagasOcupadas.add(vagas[i]);
-				System.out.println(vagas[i].minhaVaga());
+				System.out.println(vagas[i].getCarro().informacaoVeiculo());
 			}
-		}	
+		}
+		return vagasOcupadas.toString();
+
 	}
+
 }
