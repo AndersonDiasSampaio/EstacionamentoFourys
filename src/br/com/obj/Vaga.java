@@ -59,7 +59,7 @@ public class Vaga {
 		return saida;
 	}
 
-	public void setSaida(LocalDateTime saida) {
+	public void setSaida() {
 		this.saida = LocalDateTime.now();
 	}
 

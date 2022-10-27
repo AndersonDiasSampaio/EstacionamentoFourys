@@ -5,7 +5,6 @@ import java.util.Scanner;
 import br.com.obj.*;
 
 public class IU {
-	private String n, k;
 	private Scanner entrada = new Scanner(System.in);
 	private Integer parada = 10;
 
@@ -58,6 +57,8 @@ public class IU {
 		System.out.println("Digite 4 para vagas disponiveis");
 		System.out.println("Digite 5 para vagas ocupadas");
 		System.out.println("Digite 6 para hora da entrada do veiculo");
+		System.out.println("Digite 7 para hora da saida do veiculo");
+		System.out.println("Digite 8 sair  veiculo");
 
 		valor = entrada.nextInt();
 		while (valor != parada) {
@@ -86,20 +87,17 @@ public class IU {
 				c = new Vaga(valorVaga[0], b);
 				estacionamento.estaciona(c.getPosicao(), c);
 
-
 			} else if (valor == 2) {
 				System.out.println("Digite a placa do veículo");
 				aux2 = entrada.next();
 
 				System.out.println(estacionamento.informacaoVeiculo(aux2));
 
-
 			} else if (valor == 3) {
 				System.out.println("Digite o nome da pessoa");
 				aux2 = entrada.next();
 
 				estacionamento.infoPessoa(aux2);
-
 
 			} else if (valor == 4) {
 				System.out.println(estacionamento.vagasDisponivel());
@@ -119,6 +117,12 @@ public class IU {
 
 				System.out.println(estacionamento.horasaidaVeiculo(aux2));
 
+			} else if (valor == 8) {
+				System.out.println("Digite a placa do veículo, sair com o veiculo do estacionamento");
+				aux2 = entrada.next();
+
+				estacionamento.saidaVeiculo(aux2);
+
 			} else {
 				System.out.println("Digite uma entrada válida");
 				System.out.println("Digite 1 para cadastro");
@@ -128,6 +132,8 @@ public class IU {
 				System.out.println("Digite 5 para vagas ocupadas");
 				System.out.println("Digite 6 para hora da entrada do veiculo");
 				System.out.println("Digite 7 para hora da saida do veiculo");
+				System.out.println("Digite 8 sair  veiculo");
+
 				valor = entrada.nextInt();
 
 			}
@@ -138,6 +144,8 @@ public class IU {
 			System.out.println("Digite 5 para vagas ocupadas");
 			System.out.println("Digite 6 para hora da entrada do veiculo");
 			System.out.println("Digite 7 para hora da saida do veiculo");
+			System.out.println("Digite 8 sair  veiculo");
+
 			valor = entrada.nextInt();
 		}
 

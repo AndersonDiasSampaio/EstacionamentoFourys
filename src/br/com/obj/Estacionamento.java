@@ -42,7 +42,7 @@ public class Estacionamento {
 	public String vagasOcupadas() {
 		ArrayList<Vaga> vagasOcupadas = new ArrayList<Vaga>();
 		for (int i = 0; i < numeroDeVagas; i++) {
-			if (vagas[i] != null) {
+			if (vagas[i] != null&&this.vagas[i].getSaida()==null) {
 				vagasOcupadas.add(vagas[i]);
 			}
 		}
@@ -138,12 +138,27 @@ public class Estacionamento {
 			}
 
 		}
+		return "Veículo encontra-se no estacionamento";
+
+	}
+
+	public void saidaVeiculo(String a) {
+		Vaga vaga = new Vaga();
+		int count = 0;
+		for (int i = 0; i < vagas.length; i++) {
+
+			if (this.vagas[i] != null&&this.vagas[i].getCarro().getPlaca().equals(a)) {
+				this.vagas[i].setSaida();
+				this.vagas[i] = null;
+
+			}
+
+		}
 		/*
 		 * if (count == 0) { System.out.println("usuario nao encontrado");
 		 * 
 		 * }
 		 */
-		return "Veículo nao encontrado";
 
 	}
 
