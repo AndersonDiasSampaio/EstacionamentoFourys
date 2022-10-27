@@ -44,8 +44,8 @@ public class Carro {
 		this.modelo = modelo;
 	}
 
-	public String getPessoa() {
-		return pessoa.toString();
+	public Pessoa getPessoa() {
+		return this.pessoa;
 	}
 
 	public void addPessoa(Pessoa pessoa) {

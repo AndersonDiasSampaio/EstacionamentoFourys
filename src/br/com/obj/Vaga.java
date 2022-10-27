@@ -84,7 +84,7 @@ public class Vaga {
 			return "Vaga Ocupada"+ " | Posicao: " + this.posicao + " | Data e Hora da entrada: " + this.entrada+" | "
 					 + this.carro.informacaoVeiculo();
 		}else {return "Vaga Livre " + this.isOcupped + " | Posicao: " + this.posicao + " | Data e Hora da entrada: " + this.entrada
-				+" | "+  this.carro.informacaoVeiculo();}
+				+" | "+  this.carro.informacaoVeiculo()+"\n";}
 	}
 	}
 

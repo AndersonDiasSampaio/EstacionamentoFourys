@@ -8,10 +8,10 @@ public class Pessoa {
 
 	private String nome;
 	private String cpf;
-	private	Integer telefone;
+	private	String telefone;
 	private	String cnh;
 
-	public Pessoa(String nome, String cpf, Integer telefone, String cnh) {
+	public Pessoa(String nome, String cpf, String telefone, String cnh) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -35,11 +35,11 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 
-	public Integer getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
