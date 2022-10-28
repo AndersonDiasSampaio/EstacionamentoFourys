@@ -44,14 +44,15 @@ public class Estacionamento {
 		return "As vagas disponiveis sao: " + vagasDisponiveis.toString();
 	}
 
-	public String vagasOcupadas() {
+	public  void /*String*/ vagasOcupadas() {
 		ArrayList<Vaga> vagasOcupadas = new ArrayList<Vaga>();
 		for (int i = 0; i < numeroDeVagas; i++) {
 			if (vagas[i] != null&&this.vagas[i].getSaida()==null) {
 				vagasOcupadas.add(vagas[i]);
+				System.out.println(vagas[i]);
 			}
 		}
-		return "As vagas ocupadas sao: \n" + vagasOcupadas.toString();
+		//return "As vagas ocupadas sao: \n" + vagasOcupadas.toString();
 
 	}
 

@@ -103,7 +103,7 @@ public class IU {
 				System.out.println(estacionamento.vagasDisponivel());
 
 			} else if (valor == 5) {
-				System.out.println(estacionamento.vagasOcupadas());
+				estacionamento.vagasOcupadas();
 
 			} else if (valor == 6) {
 				System.out.println("Digite a placa do veículo, para localizarmos a hora de entrada");
