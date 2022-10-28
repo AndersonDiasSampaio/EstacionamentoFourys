@@ -24,7 +24,12 @@ public class Estacionamento {
 	}
 
 	public void estaciona(Integer n, Vaga Vaga) {
-		this.vagas[n - 1] = Vaga;
+		if(this.vagas[n-1]==null) {
+			this.vagas[n - 1] = Vaga;
+		}else {
+			System.out.println("Vaga indisponível");
+		}
+		
 
 	}
 
