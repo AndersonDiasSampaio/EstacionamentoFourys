@@ -27,6 +27,31 @@ public class Estacionamento {
 		}
 	}
 
+	public String retornaCarroDadoAvaga(Integer i) {
+		return this.vagas[i].getCarro().informacaoVeiculo();
+	}
+
+	public String retornaVagaDadaAplaca(String a) {
+		Integer count = 0;
+		for (int i = 0; i < vagas.length; i++) {
+
+			if (this.vagas[i] != null) {
+				if (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) {
+					// System.out.println(this.vagas[i].getCarro().getPessoa());
+					count++;
+					return "A vaga ocupada pelo carro com placa: " + a + " é " + this.vagas[i].getPosicao();
+
+				}
+
+			}
+
+		}
+		if (count == 0) {
+		}
+		return "O carro com a placa: " + a + " nao se encontra no estacionamento";
+
+	}
+
 	public void estaciona(Integer n, Vaga Vaga) {
 		if (this.vagas[n - 1] == null) {
 			this.vagas[n - 1] = Vaga;
@@ -108,6 +133,7 @@ public class Estacionamento {
 	public String horaentradaVeiculo(String a) {
 		Vaga vaga = new Vaga();
 		int count = 0;
+
 		for (int i = 0; i < vagas.length; i++) {
 
 			if (this.vagas[i] != null) {
@@ -186,18 +212,21 @@ public class Estacionamento {
 		Vaga vaga = new Vaga();
 		int count = 0;
 		List<Vaga> aux3 = new ArrayList();
-
+		System.out.println("Histórico de VAgas");
+		System.out.println("Vagas Ocupadas Atualmente:");
+		vagasOcupadas();
+		System.out.println("Histórico de ocupacao anteriores:");
 		for (Integer key : map.keySet()) {
-		
-			aux3=this.map.get(key);
+
+			aux3 = this.map.get(key);
 			System.out.println("A vaga " + key + " ,possui o seguinte historico\n");
-			for(Vaga Y: aux3) {
+			for (Vaga Y : aux3) {
 				System.out.println(Y.historico());
 
 			}
-			//System.out.println("A vaga " + key + " ,possui o seguinte historico" + this.map.get(key));
+			// System.out.println("A vaga " + key + " ,possui o seguinte historico" +
+			// this.map.get(key));
 		}
-		
 
 		/*
 		 * if (count == 0) { System.out.println("usuario nao encontrado");
@@ -207,28 +236,25 @@ public class Estacionamento {
 
 	}
 
-	public void imprimehistorico(Integer a) {
+	public void imprimehistorico() {
 		Vaga vaga = new Vaga();
 		int count = 0;
-		for (int i = 0; i < vagas.length; i++) {
+		List<Vaga> aux3 = new ArrayList();
+		System.out.println("Histórico de VAgas");
+		System.out.println("Vagas Ocupadas Atualmente:");
+		vagasOcupadas();
+		System.out.println("Histórico de Ocupacao:");
+		for (Integer key : map.keySet()) {
 
-			if (this.vagas[i] != null && this.vagas[i].getCarro().getPlaca().equals(a)) {
-				this.vagas[i].setSaida();
-				this.ListaMap.add(this.vagas[i + 1]);
-
-				map.put(i, this.ListaMap);
-				this.vagas[i] = null;
+			aux3 = this.map.get(key);
+			System.out.println("A vaga " + key + " ,possui o seguinte historico\n");
+			for (Vaga Y : aux3) {
+				System.out.println(Y.historico());
 
 			}
-
+			// System.out.println("A vaga " + key + " ,possui o seguinte historico" +
+			// this.map.get(key));
 		}
 
-		/*
-		 * if (count == 0) { System.out.println("usuario nao encontrado");
-		 * 
-		 * }
-		 */
-
-	}
-
+}
 }

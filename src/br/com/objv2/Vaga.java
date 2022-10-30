@@ -94,8 +94,8 @@ public class Vaga {
 
 	public String historico() {
 
-		return "Vaga Ocupada" + " | Posicao: " + this.posicao + " | Data e Hora da entrada: " + this.entrada + " | "
-				+ "| Data e Hora da Saida "+this.getSaida()+"  |  " + this.carro.informacaoVeiculo();
+		return " Posicao: " + this.posicao + " | Vaga Ocupada" + " | Data e Hora da entrada: " + this.entrada + " | "
+				+ " Data e Hora da Saida "+this.getSaida()+"  |  " + this.carro.informacaoVeiculo();
 
 	}
 

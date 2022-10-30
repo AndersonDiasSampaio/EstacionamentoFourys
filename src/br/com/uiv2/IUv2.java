@@ -5,7 +5,7 @@ import java.util.Scanner;
 import br.com.objv2.*;
 public class IUv2 {
 	private Scanner entrada = new Scanner(System.in);
-	private Integer parada = 10;
+	private Integer parada = 98989386;
 
 	public IUv2() {
 		// TODO Auto-generated constructor stub
@@ -59,6 +59,8 @@ public class IUv2 {
 		System.out.println("Digite 7 para hora da saida do veiculo");
 		System.out.println("Digite 8 sair  veiculo");
 		System.out.println("Digite 9 para histórico de saida do estacionamento");
+		System.out.println("Digite 10 para histórico do estacionamento - vagas ocupadas serao exibidas primeiro");
+
 
 
 		valor = entrada.nextInt();
@@ -127,9 +129,13 @@ public class IUv2 {
 			}else if (valor == 9) {
 				
 
-				estacionamento.saidahistorico();
+				estacionamento.imprimehistorico();;
 
-			} else {
+			} else if (valor == 10) {
+				
+
+				estacionamento.saidahistorico();}
+			else {
 				System.out.println("Digite uma entrada válida");
 				System.out.println("Digite 1 para cadastro");
 				System.out.println("Digite 2 para informacao do veículo");
@@ -140,6 +146,8 @@ public class IUv2 {
 				System.out.println("Digite 7 para hora da saida do veiculo");
 				System.out.println("Digite 8 sair  veiculo");
 				System.out.println("Digite 9 para histórico de saida do estacionamento");
+				System.out.println("Digite 10 para histórico do estacionamento - vagas ocupadas serao exibidas primeiro");
+
 
 
 				valor = entrada.nextInt();
@@ -154,6 +162,7 @@ public class IUv2 {
 			System.out.println("Digite 7 para hora da saida do veiculo");
 			System.out.println("Digite 8 sair  veiculo");
 			System.out.println("Digite 9 para histórico de saida do estacionamento");
+			System.out.println("Digite 10 para histórico do estacionamento - vagas ocupadas serao exibidas primeiro");
 
 
 			valor = entrada.nextInt();
