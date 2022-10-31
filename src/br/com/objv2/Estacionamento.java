@@ -11,6 +11,7 @@ public class Estacionamento {
 	private Map<Integer, List<Vaga>> map = new HashMap<>();
 	private List<Vaga> ListaMap = new ArrayList();
 	private Integer ContadorMap = 0;
+	private Caixa caixa;
 
 	public Estacionamento(Vaga[] vagas, Integer numeroDeVagas) {
 		super();
@@ -18,9 +19,10 @@ public class Estacionamento {
 		this.numeroDeVagas = numeroDeVagas;
 	}
 
-	public Estacionamento(Integer n) {
+	public Estacionamento(Integer n, Double a) {
 		numeroDeVagas = n;
 		vagas = new Vaga[n];
+		caixa = new Caixa(a);
 
 		for (int i = 0; i < n; i++) {
 			this.vagas[i] = null;
@@ -28,7 +30,12 @@ public class Estacionamento {
 	}
 
 	public String retornaCarroDadoAvaga(Integer i) {
-		return this.vagas[i].getCarro().informacaoVeiculo();
+		if (this.vagas[i - 1] != null) {
+			return this.vagas[i - 1].getCarro().informacaoVeiculo();
+		} else {
+			String a = "Vaga Vazia";
+			return a;
+		}
 	}
 
 	public String retornaVagaDadaAplaca(String a) {
@@ -39,7 +46,7 @@ public class Estacionamento {
 				if (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) {
 					// System.out.println(this.vagas[i].getCarro().getPessoa());
 					count++;
-					return "A vaga ocupada pelo carro com placa: " + a + " é " + this.vagas[i].getPosicao();
+					return "A vaga ocupada pelo carro com placa: " + a + " e " + this.vagas[i].getPosicao();
 
 				}
 
@@ -73,20 +80,27 @@ public class Estacionamento {
 	}
 
 	public void /* String */ vagasOcupadas() {
+		int count = 0;
 		ArrayList<Vaga> vagasOcupadas = new ArrayList<Vaga>();
 		for (int i = 0; i < numeroDeVagas; i++) {
 			if (vagas[i] != null && this.vagas[i].getSaida() == null) {
 				vagasOcupadas.add(vagas[i]);
 				System.out.println(vagas[i]);
+				count = 1;
 			}
+		}
+		if (count == 0) {
+			System.out.println("Nao há vagas ocupadas");
+
 		}
 		// return "As vagas ocupadas sao: \n" + vagasOcupadas.toString();
 
 	}
 
 	public void infoPessoa(String a) {
-		Vaga vaga = new Vaga();
 		int count = 0;
+		List<Vaga> aux3 = new ArrayList();
+
 		for (int i = 0; i < vagas.length; i++) {
 
 			if (this.vagas[i] != null) {
@@ -97,8 +111,23 @@ public class Estacionamento {
 				}
 
 			}
-
 		}
+		if (count == 0) {
+			for (Integer key : map.keySet()) {
+
+				aux3 = this.map.get(key);
+				for (Vaga y : aux3) {
+
+					if (y.getCarro().getPessoa().getNome().equals(a)) {
+						System.out.println(y.getCarro().getPessoa());
+						count = 1;
+					}
+
+				}
+
+			}
+		}
+
 		if (count == 0) {
 			System.out.println("usuario nao encontrado");
 
@@ -106,80 +135,103 @@ public class Estacionamento {
 
 	}
 
-	public String informacaoVeiculo(String a) {
-		Vaga vaga = new Vaga();
+	public void informacaoVeiculo(String a) {
 		int count = 0;
+		List<Vaga> aux3 = new ArrayList();
 		for (int i = 0; i < vagas.length; i++) {
 
 			if (this.vagas[i] != null) {
 				if (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) {
-					// System.out.println(this.vagas[i].getCarro().getPessoa());
-					return this.vagas[i].getCarro().informacaoVeiculo();
+					count = 1;
+					System.out.println(this.vagas[i].getCarro().informacaoVeiculo());
 
 				}
 
 			}
 
 		}
-		/*
-		 * if (count == 0) { System.out.println("usuario nao encontrado");
-		 * 
-		 * }
-		 */
-		return "Veículo nao encontrado";
+		if (count == 0) {
+			for (Integer key : map.keySet()) {
 
-	}
+				aux3 = this.map.get(key);
+				for (Vaga y : aux3) {
 
-	public String horaentradaVeiculo(String a) {
-		Vaga vaga = new Vaga();
-		int count = 0;
-
-		for (int i = 0; i < vagas.length; i++) {
-
-			if (this.vagas[i] != null) {
-				if (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) {
-					return this.vagas[i].getEntrada().toString();
-
-				}
-
-			}
-
-		}
-		/*
-		 * if (count == 0) { System.out.println("usuario nao encontrado");
-		 * 
-		 * }
-		 */
-		return "Veículo nao encontrado";
-
-	}
-
-	public String horasaidaVeiculo(String a) {
-		Vaga vaga = new Vaga();
-		int count = 0;
-		for (int i = 0; i < vagas.length; i++) {
-
-			if (this.vagas[i] != null) {
-				if (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) {
-					if (this.vagas[i].getSaida() != null) {
-						return this.vagas[i].getSaida().toString();
-					} else {
-						return "Veículo ainda encontra-se no estaciomento";
+					if (y.getCarro().getPlaca().equals(a)) {
+						System.out.println(y.getCarro().informacaoVeiculo());
+						count = 1;
 					}
-					// System.out.println(this.vagas[i].getCarro().getPessoa());
+
+				}
+
+			}
+		}
+
+		if (count == 0) {
+			System.out.println("Veículo nao encontrado");
+
+		}
+
+	}
+
+	public void horaentradaVeiculo(String a) {
+		List<Vaga> aux3 = new ArrayList();
+
+		int count = 0;
+		for (int i = 0; i < vagas.length; i++) {
+
+			if (this.vagas[i] != null) {
+				if (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) {
+					System.out.println(vagas[i].getEntrada().toString());
+					count = 1;
+				}
+
+			}
+
+		}
+		if (count == 0) {
+			for (Integer key : map.keySet()) {
+
+				aux3 = this.map.get(key);
+				System.out.println("O carro com placa " + a + " entrou as: ");
+				for (Vaga Y : aux3) {
+					if (Y.getCarro().getPlaca().equals(a)) {
+						System.out.println(Y.getEntrada());
+						count = 1;
+
+					}
 
 				}
 
 			}
 
 		}
-		return "Veículo encontra-se no estacionamento";
+
+	}
+
+	public void horasaidaVeiculo(String a) {
+		List<Vaga> aux3 = new ArrayList();
+		Integer count = 0;
+		for (Integer key : map.keySet()) {
+
+			aux3 = this.map.get(key);
+			System.out.println("O carro com placa " + a + " saiu as: ");
+			for (Vaga y : aux3) {
+				if (y.getCarro().getPlaca().equals(a) && y.getSaida() != null) {
+					System.out.println(y.getSaida());
+					count = 1;
+				}
+
+			}
+
+		}
+		if (count == 0) {
+			System.out.println("Veiculo ainda encontra-se no estacionamento");
+
+		}
 
 	}
 
 	public void saidaVeiculo(String a) {
-		Vaga vaga = new Vaga();
-		int count = 0;
 		List<Vaga> aux3 = new ArrayList();
 
 		for (int i = 0; i < vagas.length; i++) {
@@ -189,11 +241,13 @@ public class Estacionamento {
 				if (map.get(i + 1) != null) {
 					aux3 = map.get(i + 1);
 					aux3.add(this.vagas[i]);
+					caixa.setCaixa(this.vagas[i].getEntrada(), this.vagas[i].getSaida());
 					map.put(i + 1, aux3);
 					this.vagas[i] = null;
 				} else {
 					aux3.add(this.vagas[i]);
 					map.put(i + 1, aux3);
+					caixa.setCaixa(this.vagas[i].getEntrada(), this.vagas[i].getSaida());
 					this.vagas[i] = null;
 				}
 
@@ -209,8 +263,6 @@ public class Estacionamento {
 	}
 
 	public void saidahistorico() {
-		Vaga vaga = new Vaga();
-		int count = 0;
 		List<Vaga> aux3 = new ArrayList();
 		System.out.println("Histórico de VAgas");
 		System.out.println("Vagas Ocupadas Atualmente:");
@@ -224,25 +276,14 @@ public class Estacionamento {
 				System.out.println(Y.historico());
 
 			}
-			// System.out.println("A vaga " + key + " ,possui o seguinte historico" +
-			// this.map.get(key));
-		}
 
-		/*
-		 * if (count == 0) { System.out.println("usuario nao encontrado");
-		 * 
-		 * }
-		 */
+		}
 
 	}
 
 	public void imprimehistorico() {
-		Vaga vaga = new Vaga();
-		int count = 0;
 		List<Vaga> aux3 = new ArrayList();
-		System.out.println("Histórico de VAgas");
-		System.out.println("Vagas Ocupadas Atualmente:");
-		vagasOcupadas();
+
 		System.out.println("Histórico de Ocupacao:");
 		for (Integer key : map.keySet()) {
 
@@ -252,9 +293,13 @@ public class Estacionamento {
 				System.out.println(Y.historico());
 
 			}
-			// System.out.println("A vaga " + key + " ,possui o seguinte historico" +
-			// this.map.get(key));
+
 		}
 
-}
+	}
+
+	public Double caixaEstacionamento() {
+		return this.caixa.getCaixa();
+	}
+
 }

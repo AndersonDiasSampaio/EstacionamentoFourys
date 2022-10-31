@@ -3,6 +3,7 @@ package br.com.uiv2;
 import java.util.Scanner;
 
 import br.com.objv2.*;
+
 public class IUv2 {
 	private Scanner entrada = new Scanner(System.in);
 	private Integer parada = 98989386;
@@ -23,10 +24,13 @@ public class IUv2 {
 		Vaga c;
 		Integer aux;
 		String aux2;
-
+		Double aux4;
 		System.out.println("Digite o tamanho do estacionamento");
 		aux = entrada.nextInt();
-		estacionamento = new Estacionamento(aux);
+		System.out.println("Digite o valor do estacionamento, por segundos");
+		aux4 = entrada.nextDouble();
+		estacionamento = new Estacionamento(aux, aux4);
+
 		System.out.println("Bom dia, iremos cadastrar suas informações");
 		System.out.println("Digite os dados do  usuário");
 		System.out.println("Digite o nome do usuário");
@@ -50,18 +54,7 @@ public class IUv2 {
 		valorVaga[0] = entrada.nextInt();
 		c = new Vaga(valorVaga[0], b);
 		estacionamento.estaciona(c.getPosicao(), c);
-		System.out.println("Digite 1 para cadastro");
-		System.out.println("Digite 2 para informações do veículo");
-		System.out.println("Digite 3 para informacao da pessoa");
-		System.out.println("Digite 4 para vagas disponiveis");
-		System.out.println("Digite 5 para vagas ocupadas");
-		System.out.println("Digite 6 para hora da entrada do veiculo");
-		System.out.println("Digite 7 para hora da saida do veiculo");
-		System.out.println("Digite 8 sair  veiculo");
-		System.out.println("Digite 9 para histórico de saida do estacionamento");
-		System.out.println("Digite 10 para histórico do estacionamento - vagas ocupadas serao exibidas primeiro");
-
-
+		opcoesMenu();
 
 		valor = entrada.nextInt();
 		while (valor != parada) {
@@ -94,7 +87,7 @@ public class IUv2 {
 				System.out.println("Digite a placa do veículo");
 				aux2 = entrada.next();
 
-				System.out.println(estacionamento.informacaoVeiculo(aux2));
+				estacionamento.informacaoVeiculo(aux2);
 
 			} else if (valor == 3) {
 				System.out.println("Digite o nome da pessoa");
@@ -112,13 +105,13 @@ public class IUv2 {
 				System.out.println("Digite a placa do veículo, para localizarmos a hora de entrada");
 				aux2 = entrada.next();
 
-				System.out.println(estacionamento.horaentradaVeiculo(aux2));
+				estacionamento.horaentradaVeiculo(aux2);
 
 			} else if (valor == 7) {
 				System.out.println("Digite a placa do veículo, para localizarmos a hora de saida");
 				aux2 = entrada.next();
 
-				System.out.println(estacionamento.horasaidaVeiculo(aux2));
+				estacionamento.horasaidaVeiculo(aux2);
 
 			} else if (valor == 8) {
 				System.out.println("Digite a placa do veículo, sair com o veiculo do estacionamento");
@@ -126,47 +119,57 @@ public class IUv2 {
 
 				estacionamento.saidaVeiculo(aux2);
 
-			}else if (valor == 9) {
-				
+			} else if (valor == 9) {
 
-				estacionamento.imprimehistorico();;
+				estacionamento.imprimehistorico();
 
 			} else if (valor == 10) {
-				
 
-				estacionamento.saidahistorico();}
-			else {
-				System.out.println("Digite uma entrada válida");
-				System.out.println("Digite 1 para cadastro");
-				System.out.println("Digite 2 para informacao do veículo");
-				System.out.println("Digite 3 para informacao da pessoa");
-				System.out.println("Digite 4 para vagas disponiveis");
-				System.out.println("Digite 5 para vagas ocupadas");
-				System.out.println("Digite 6 para hora da entrada do veiculo");
-				System.out.println("Digite 7 para hora da saida do veiculo");
-				System.out.println("Digite 8 sair  veiculo");
-				System.out.println("Digite 9 para histórico de saida do estacionamento");
-				System.out.println("Digite 10 para histórico do estacionamento - vagas ocupadas serao exibidas primeiro");
+				estacionamento.saidahistorico();
+			} else if (valor == 11) {
+				System.out.println("Digite a vaga");
 
+				int aux3 = entrada.nextInt();
 
+				System.out.println(estacionamento.retornaCarroDadoAvaga(aux3));
+
+			} else if (valor == 12) {
+				System.out.println("Digite a placa");
+
+				aux2 = entrada.next();
+				System.out.println(estacionamento.retornaVagaDadaAplaca(aux2));
+
+			} else if (valor == 13) {
+
+				System.out.println("O valor do caixa do estacionamento e" + estacionamento.caixaEstacionamento());
+
+			} else {
+				opcoesMenu();
 
 				valor = entrada.nextInt();
 
 			}
-			System.out.println("Digite 1 para cadastro");
-			System.out.println("Digite 2 para informacao do veículo");
-			System.out.println("Digite 3 para informacao da pessoa");
-			System.out.println("Digite 4 para vagas disponiveis");
-			System.out.println("Digite 5 para vagas ocupadas");
-			System.out.println("Digite 6 para hora da entrada do veiculo");
-			System.out.println("Digite 7 para hora da saida do veiculo");
-			System.out.println("Digite 8 sair  veiculo");
-			System.out.println("Digite 9 para histórico de saida do estacionamento");
-			System.out.println("Digite 10 para histórico do estacionamento - vagas ocupadas serao exibidas primeiro");
-
+			opcoesMenu();
 
 			valor = entrada.nextInt();
 		}
+
+	}
+
+	public void opcoesMenu() {
+		System.out.println("Digite 1 para cadastro");
+		System.out.println("Digite 2 para informacao do veículo");
+		System.out.println("Digite 3 para informacao da pessoa");
+		System.out.println("Digite 4 para vagas disponiveis");
+		System.out.println("Digite 5 para vagas ocupadas");
+		System.out.println("Digite 6 para hora da entrada do veiculo");
+		System.out.println("Digite 7 para hora da saida do veiculo");
+		System.out.println("Digite 8 sair  veiculo");
+		System.out.println("Digite 9 para histórico de saida do estacionamento");
+		System.out.println("Digite 10 para histórico do estacionamento - vagas ocupadas serao exibidas primeiro");
+		System.out.println("Digite 11 a vaga pra identificar o veiculo que ocupa essa vaga");
+		System.out.println("Digite 12 a placa do veículo, para identificar qual vaga ele ocupa");
+		System.out.println("Digite 13 imprime o valor do caixa");
 
 	}
 
