@@ -44,7 +44,6 @@ public class Estacionamento {
 
 			if (this.vagas[i] != null) {
 				if (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) {
-					// System.out.println(this.vagas[i].getCarro().getPessoa());
 					count++;
 					return "A vaga ocupada pelo carro com placa: " + a + " e " + this.vagas[i].getPosicao();
 
@@ -79,7 +78,7 @@ public class Estacionamento {
 		return "As vagas disponiveis sao: " + vagasDisponiveis.toString();
 	}
 
-	public void /* String */ vagasOcupadas() {
+	public void vagasOcupadas() {
 		int count = 0;
 		ArrayList<Vaga> vagasOcupadas = new ArrayList<Vaga>();
 		for (int i = 0; i < numeroDeVagas; i++) {
@@ -254,11 +253,7 @@ public class Estacionamento {
 			}
 
 		}
-		/*
-		 * if (count == 0) { System.out.println("usuario nao encontrado");
-		 * 
-		 * }
-		 */
+
 
 	}
 

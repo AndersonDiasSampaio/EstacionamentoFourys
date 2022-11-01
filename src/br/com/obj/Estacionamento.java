@@ -7,29 +7,30 @@ import java.util.List;
 public class Estacionamento {
 	private Vaga[] vagas;
 	private Integer numeroDeVagas;
+	private List<Vaga> a;
 
 	public Estacionamento(Vaga[] vagas, Integer numeroDeVagas) {
 		super();
 		this.vagas = vagas;
 		this.numeroDeVagas = numeroDeVagas;
+		this.a = new ArrayList<Vaga>();
 	}
 
 	public Estacionamento(Integer n) {
 		numeroDeVagas = n;
 		vagas = new Vaga[n];
-
+		a= new ArrayList();
 		for (int i = 0; i < n; i++) {
 			this.vagas[i] = null;
 		}
 	}
 
 	public void estaciona(Integer n, Vaga Vaga) {
-		if(this.vagas[n-1]==null) {
+		if (this.vagas[n - 1] == null) {
 			this.vagas[n - 1] = Vaga;
-		}else {
+		} else {
 			System.out.println("Vaga indisponível");
 		}
-		
 
 	}
 
@@ -44,20 +45,20 @@ public class Estacionamento {
 		return "As vagas disponiveis sao: " + vagasDisponiveis.toString();
 	}
 
-	public  void /*String*/ vagasOcupadas() {
-		int count =0;
+	public void /* String */ vagasOcupadas() {
+		int count = 0;
 		ArrayList<Vaga> vagasOcupadas = new ArrayList<Vaga>();
 		for (int i = 0; i < numeroDeVagas; i++) {
-			if (vagas[i] != null&&this.vagas[i].getSaida()==null) {
+			if (vagas[i] != null && this.vagas[i].getSaida() == null) {
 				vagasOcupadas.add(vagas[i]);
 				System.out.println(vagas[i]);
 				count++;
 			}
 		}
-	if(count==0) {
-		System.out.println("Nao há vagas ocupadas");
-	}
-		//return "As vagas ocupadas sao: \n" + vagasOcupadas.toString();
+		if (count == 0) {
+			System.out.println("Nao há vagas ocupadas");
+		}
+		// return "As vagas ocupadas sao: \n" + vagasOcupadas.toString();
 
 	}
 
@@ -133,22 +134,38 @@ public class Estacionamento {
 	public String horasaidaVeiculo(String a) {
 		Vaga vaga = new Vaga();
 		int count = 0;
-		for (int i = 0; i < vagas.length; i++) {
+		if (a.length() != 0) {
+			for (Vaga vaga2 : this.a) {
+				if (vaga2 != null) {
+					if (vaga2.getCarro().getPlaca().equalsIgnoreCase(a)) {
+						if (vaga2.getSaida() != null) {
+							count = 1;
 
-			if (this.vagas[i] != null) {
-				if (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) {
-					if (this.vagas[i].getSaida() != null) {
-						return this.vagas[i].getSaida().toString();
-					} else {
-						return "Veículo ainda encontra-se no estaciomento";
+							return vaga2.getSaida().toString();
+						}
+						// System.out.println(this.vagas[i].getCarro().getPessoa());
+
 					}
-					// System.out.println(this.vagas[i].getCarro().getPessoa());
 
 				}
-
 			}
-
 		}
+		/*
+		 * for (int i = 0; i < vagas.length; i++) {
+		 * 
+		 * if (this.vagas[i] != null) { if
+		 * (this.vagas[i].getCarro().getPlaca().equalsIgnoreCase(a)) { if
+		 * (this.vagas[i].getSaida() != null) { return
+		 * this.vagas[i].getSaida().toString(); } else { return
+		 * "Veículo ainda encontra-se no estaciomento"; } //
+		 * System.out.println(this.vagas[i].getCarro().getPessoa());
+		 * 
+		 * }
+		 * 
+		 * }
+		 * 
+		 * }
+		 */
 		return "Veículo encontra-se no estacionamento";
 
 	}
@@ -158,8 +175,9 @@ public class Estacionamento {
 		int count = 0;
 		for (int i = 0; i < vagas.length; i++) {
 
-			if (this.vagas[i] != null&&this.vagas[i].getCarro().getPlaca().equals(a)) {
+			if (this.vagas[i] != null && this.vagas[i].getCarro().getPlaca().equals(a)) {
 				this.vagas[i].setSaida();
+				this.a.add(vagas[i]);
 				this.vagas[i] = null;
 
 			}

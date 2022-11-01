@@ -141,7 +141,7 @@ public class IUv2 {
 
 			} else if (valor == 13) {
 
-				System.out.println("O valor do caixa do estacionamento e" + estacionamento.caixaEstacionamento());
+				System.out.println("O valor do caixa do estacionamento e R$" + estacionamento.caixaEstacionamento());
 
 			} else {
 				opcoesMenu();
@@ -165,8 +165,8 @@ public class IUv2 {
 		System.out.println("Digite 6 para hora da entrada do veiculo");
 		System.out.println("Digite 7 para hora da saida do veiculo");
 		System.out.println("Digite 8 sair  veiculo");
-		System.out.println("Digite 9 para histórico de saida do estacionamento");
-		System.out.println("Digite 10 para histórico do estacionamento - vagas ocupadas serao exibidas primeiro");
+		System.out.println("Digite 9 para historico de saida do estacionamento");
+		System.out.println("Digite 10 para historico do estacionamento - vagas ocupadas serao exibidas primeiro");
 		System.out.println("Digite 11 a vaga pra identificar o veiculo que ocupa essa vaga");
 		System.out.println("Digite 12 a placa do veículo, para identificar qual vaga ele ocupa");
 		System.out.println("Digite 13 imprime o valor do caixa");
